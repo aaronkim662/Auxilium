@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  password: MyString
+  name: MyString
+  years_of_experience: 1
+  time_availability: 2019-10-04
+
+two:
+  username: MyString
+  password: MyString
+  name: MyString
+  years_of_experience: 1
+  time_availability: 2019-10-04
