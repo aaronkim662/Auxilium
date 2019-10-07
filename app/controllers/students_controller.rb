@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :update, :destroy]
-  before_action :authorize_request, except: [:create, :login]
+  # before_action :authorize_request, except: [:create, :login]
 
 
   # GET /students
