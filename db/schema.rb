@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_04_201927) do
+ActiveRecord::Schema.define(version: 2019_10_05_184634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
+    t.string "time"
+    t.bigint "teacher_id", null: false
+    t.bigint "student_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_id"], name: "index_appointments_on_student_id"
+    t.index ["teacher_id"], name: "index_appointments_on_teacher_id"
+  end
+
+  create_table "availabilities", force: :cascade do |t|
+    t.string "time"
+    t.bigint "teacher_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["teacher_id"], name: "index_availabilities_on_teacher_id"
+  end
 
   create_table "students", force: :cascade do |t|
     t.string "username"
@@ -35,4 +53,12 @@ ActiveRecord::Schema.define(version: 2019_10_04_201927) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "teacherstudents_times", id: false, force: :cascade do |t|
+    t.bigint "teacherstudent_id", null: false
+    t.bigint "time_id", null: false
+  end
+
+  add_foreign_key "appointments", "students"
+  add_foreign_key "appointments", "teachers"
+  add_foreign_key "availabilities", "teachers"
 end

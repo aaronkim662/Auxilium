@@ -1,6 +1,6 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :update, :destroy]
-  before_action :authorize_request, except: [:create, :login]
+  # before_action :authorize_request, except: [:create, :login]
 
 
   # GET /teachers

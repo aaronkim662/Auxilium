@@ -3,23 +3,29 @@ import './App.css';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Footer from './components/Footer/Footer';
+import Form from './components/Form/Form';
+
+import { Route, Switch } from 'react-router-dom';
 
 class App extends React.Component {
   state = {
-    auth : {
-      username : '',
-      password : '',
+    teacher: '',
+    regTeacher : {
+        username: '',
+        password: ''
     },
 
-  }
+}
+
   render (){
     return (
-      <React.Fragment>
+      <div className='app'>
       <Header />
-      <Main username={this.state.auth.username}
-            password={this.state.auth.password}/>  
+      <Switch>
+      <Main />
+      </Switch>
       <Footer />
-      </React.Fragment>
+      </div>
 
     )
   }

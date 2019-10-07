@@ -12,7 +12,8 @@ export const getTeachers = async () => {
 } 
 
 export const registerTeacher = async (registerData) => {
-    const resp = await api.post('/auth/login/teachers', { user: registerData });
+    console.log('reg', registerData)
+    const resp = await api.post('/teachers', { user: registerData });
     localStorage.setItem('authToken', resp.data.token);
     api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`;
     return resp.data.user;
