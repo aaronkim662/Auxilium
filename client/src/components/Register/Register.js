@@ -5,8 +5,8 @@ const Login = (props) => {
     return (
         <div className='formComp'>
             <form onSubmit={props.makeTeacher}>
-            <input type='text' placeholder='username' name="username" value={props.regTeacher.username} onChange={props.regHCuser}/>
-            <input type='text' placeholder='password' name="password" value={props.regTeacher.password} onChange={props.regHCpass}/>
+            <input type='text' placeholder='username' name="username" value={props.registerTeacher.username} onChange={props.registerHandleChangeTeacher}/>
+            <input type='text' placeholder='password' name="password" value={props.registerTeacher.password} onChange={props.registerHandleChangeTeacher}/>
             <button>Submit</button>
             </form>
 

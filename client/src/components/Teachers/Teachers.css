@@ -1,0 +1,25 @@
+.teachers {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90vh;
+}
+
+.listTeachers {
+    border: solid;
+    width: 70%;
+    margin: 0 auto;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.listTypes {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    width: 70%;
+    justify-content: space-between;
+}
+

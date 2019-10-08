@@ -1,14 +1,32 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const Login = (props) => {
+    if (props.currentTeacher) {
+        return <Redirect to='/profile' />
+    } else if (props.currentStudent) {
+        return <Redirect to='/profile' />
+    }
+    const student = (props.type === 'isStudent') ? 
+        <form onSubmit={props.logStudent}>
+            <input type='text' placeholder='student username' name="username" value={props.loginStudent.username} onChange={props.logHandleChangeStudent}/>
+            <input type='text' placeholder='password' name="password" value={props.loginStudent.password} onChange={props.logHandleChangeStudent}/>
+            <button type='submit'>Login</button>
+        </form>: ''
+
+    const teacher = (props.type === 'isTeacher') ? 
+        <form onSubmit={props.logTeacher}>
+            <input type='text' placeholder='teacher username' name="username" value={props.loginTeacher.username} onChange={props.loginHandleChangeTeacher}/>
+            <input type='text' placeholder='password' name="password" value={props.loginTeacher.password} onChange={props.loginHandleChangeTeacher}/>
+            <button type='submit'>Login</button>
+        </form> : ''
+    
+    console.log(props)
     return (
         <div className='formComp'>
-            <form onSubmit={props.loginT}>
-            <input type='text' placeholder='username' name="username" value={props.logTeacher.username} onChange={props.logHC}/>
-            <input type='text' placeholder='password' name="password" value={props.logTeacher.password} onChange={props.logHC}/>
-            <Link to='/profile' >Login</Link>
-            </form>
+            <div>{student}</div>
+            <div>{teacher}</div>
+            
 
             <Link to='/register' >
                 <button>Go register</button>
