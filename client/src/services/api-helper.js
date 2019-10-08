@@ -6,7 +6,7 @@ const api = axios.create({
     baseURL: BASE_URL
 });
 
-
+// Teachers
 export const getTeachers = async () => {
     const resp = await api.get('/teachers')
     return resp.data;
@@ -47,16 +47,7 @@ export const verifyTeacher = async () => {
     return false;
 }
 
-export const getTimes = async (data, id) => {
-    const resp = await api.get(`/teachers/${data}/availabilities`, data)
-    return resp.data
-}
-
-export const postTime = async (postData, id) => {
-    const resp = await api.post(`/teachers/${id}/availabilities`, postData)
-    return resp.data
-}
-
+// Students
 export const deleteStudent = async (id) => {
     const resp = await api.delete(`/student/${id}`)
     return resp.data
@@ -79,7 +70,7 @@ export const registerStudent = async (registerData) => {
 export const updateStudent = async (updateData, id) => {
     const resp = await api.put(`/students/${id}`, updateData);
     return resp.data;
-}
+};
 
 export const verifyStudent = async () => {
     const token = localStorage.getItem('authToken');
@@ -89,4 +80,18 @@ export const verifyStudent = async () => {
         return resp.data;
     }
     return false;
-}
+};
+
+// Availabilities
+
+export const getTimes = async (data, id) => {
+    const resp = await api.get(`/teachers/${data}/availabilities`, data)
+    return resp.data
+};
+
+// Controllers: nested object key value pairs for strong params
+// was passing key of 2pm when the key should be time
+export const postTime = async (postData, id) => {
+    const resp = await api.post(`/teachers/${id}/availabilities`, {availability: {time: postData}})
+    return resp.data
+};

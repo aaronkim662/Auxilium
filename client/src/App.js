@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Header from './components/Header/Header';
+import Home from './components/Home/Home';
 import Footer from './components/Footer/Footer';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Form from './components/Form/Form';
@@ -39,11 +40,15 @@ class App extends React.Component {
     isTeacher: false,
     loginTeacher : {
         username: '',
-        password: ''
+        password: '',
     },
     registerTeacher : {
         username: '',
-        password: ''
+        password: '',
+    },
+    registerStudent: {
+        username: '',
+        password: '',
     },
     teachers: '',
     teacherTimes : '',
@@ -105,11 +110,11 @@ handleClickType = (e) => {
 
 handleLogout = () => {
     localStorage.removeItem("authToken");
-    if (currentTeacher){
+    if (this.state.currentTeacher){
     this.setState({
       currentTeacher: null
     })
-  }else if (currentStudent){
+  }else if (this.state.currentStudent){
     this.setState({
       currentStudent: null
     })
@@ -195,9 +200,7 @@ logHandleChangeStudent = (e) => {
 
 makeTeacher = async (e) => {
     e.preventDefault();
-
     if (this.state.registerTeacher.username !== "" && this.state.registerTeacher.password !== "") {
-
     const resp = await registerTeacher(this.state.registerTeacher)
     this.setState({
         currentTeacher: resp
@@ -209,16 +212,18 @@ makeTeacher = async (e) => {
 
 makeStudent = async (e) => {
     e.preventDefault();
+    if (this.state.registerStudent.username !== "" && this.state.registerStudent.password !== "") {
     const resp = await registerStudent(this.state.registerStudent);
     this.setState({
         currentStudent: resp
     });
+    this.props.history.push('/profile')
+  }
 };
-
 
 postTeacherTime = async (data) => {
     data.preventDefault();
-    await postTime(this.state.infoTeacher.time_availability)
+    await postTime(this.state.infoTeacher.time_availability, this.state.currentTeacher.id)
 }
 
 registerHandleChangeTeacher = (e) => {
@@ -229,6 +234,16 @@ registerHandleChangeTeacher = (e) => {
             [name]: value
         }
     }))
+}
+
+registerHandleChangeStudent = (e) => {
+  const {name, value} = e.target;
+  this.setState(prevState => ({
+      registerStudent : {
+          ...prevState.registerStudent,
+          [name]: value
+      }
+  }))
 }
 
 updateTeacher = async (e) => {
@@ -244,29 +259,37 @@ updateStudent = async (e) => {
 componentDidMount = () => {
     this.handleVerifyTeacher();
     this.getTeach();
-    // this.getTime();
+    this.getTime();
 }
 
 render(){
     console.log('teacher', this.state.currentTeacher)
     console.log('student', this.state.currentStudent)
-    console.log('info', this.state.infoTeacher)
+    console.log('times', this.state.infoTeacher)
 
 
     return(
       <div className='app'>
         <Header />
         <div className='mainContainer'>
-            <button name='student' onClick={this.handleClickType}>Student</button>
-            <button name='teacher' onClick={this.handleClickType}>Teacher</button>
+        <Switch>
+            <Route exact path='/' render={() => (
+              <>
+              <Home 
+              handleClickType={this.handleClickType}/>
+              </>
+              )} />
 
-            <Switch>
               {/* Register */}
                 <Route path='/register' render={(props) => (
                     <Register {...props}
                     registerHandleChangeTeacher={this.registerHandleChangeTeacher}
+                    registerHandleChangeStudent={this.registerHandleChangeStudent}
                     registerTeacher={this.state.registerTeacher}
+                    registerStudent={this.state.registerStudent}
                     makeTeacher={this.makeTeacher}
+                    makeStudent={this.makeStudent}
+                    type={this.state.type}
                     />
                     )} />
                 {/* Map through teachers */}
@@ -325,7 +348,7 @@ render(){
                     infoStudent={this.state.infoStudent}
                     infoHandleChangeStudent={this.infoHandleChangeStudent}
                     updateStudent={this.updateStudent}
-                    deleteTeacher={this.deleteTeacher}
+                    deleteStudent={this.deleteStudent}
                     handleLogout={this.handleLogout}
                   />
               )} /> : null }

@@ -1,0 +1,22 @@
+.homeStyle {
+    height: 84vh;
+    background-image: url('https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+.homeBox {
+    padding-top: 20%;
+}
+
+.homeButton {
+  border: solid;
+  border-radius: 40px;
+  color: brown;
+  
+}
+
+.homeTitle {
+    color: lightBlue;
+}
