@@ -11,17 +11,29 @@ class ApplicationController < ActionController::API
       HashWithIndifferentAccess.new decoded
     end
 
-    def authorize_request
+    def authorize_request_teacher
         header = request.headers['Authorization']
         header = header.split(' ').last if header
         begin
           @decoded = decode(header)
-          @current_user = User.find(@decoded[:user_id])
+          @current_user = Teacher.find(@decoded[:teacher_id])
         rescue ActiveRecord::RecordNotFound => e
           render json: { errors: e.message }, status: :unauthorized
         rescue JWT::DecodeError => e
           render json: { errors: e.message }, status: :unauthorized
         end
       end
-    
+
+      def authorize_request_student
+        header = request.headers['Authorization']
+        header = header.split(' ').last if header
+        begin
+          @decoded = decode(header)
+          @current_user = Student.find(@decoded[:student_id])
+        rescue ActiveRecord::RecordNotFound => e
+          render json: { errors: e.message }, status: :unauthorized
+        rescue JWT::DecodeError => e
+          render json: { errors: e.message }, status: :unauthorized
+        end
+      end
   end

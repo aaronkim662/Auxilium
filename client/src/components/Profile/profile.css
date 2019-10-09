@@ -1,0 +1,13 @@
+.profile {
+    height: 84vh;
+}
+.profileTeacher {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileForm {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20% 0 20%;
+}

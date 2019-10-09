@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   resources :teachers
   resources :availabilities
   
-  resources :teachers do 
+  resources :teachers do  
     resources :availabilities
   end
 
   resources :students do 
-    resources :teachers do 
+    # resources :teachers do 
       resources :appointments
     end
   end

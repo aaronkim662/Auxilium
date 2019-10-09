@@ -1,13 +1,12 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :update, :destroy]
-  # before_action :authorize_request, except: [:create, :login]
-
+  before_action :authorize_request_teacher, except: [ :create, :destroy, :index, :login, :show ]
 
   # GET /teachers
   def index
     @teachers = Teacher.all
 
-    render json: @teachers
+    render json: @teachers, include: :availabilities
   end
 
   # GET /teachers/1
@@ -38,7 +37,7 @@ class TeachersController < ApplicationController
 
   # DELETE /teachers/1
   def destroy
-    @teacher.destroy
+    @teacher.destroy()
   end
 
   def login
@@ -63,7 +62,7 @@ class TeachersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def teacher_params
-      params.require(:teacher).permit(:username, :password,:name,:years_of_experience,:time_availability) 
+      params.require(:teacher).permit(:username, :password, :name, :years_of_experience, :time_availability) 
       # strong
     end
 end

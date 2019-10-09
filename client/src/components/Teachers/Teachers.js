@@ -3,6 +3,9 @@ import './Teachers.css'
 // import { getTeachers } from '../../services/api-helper';
 
 const Teachers = (props) => {
+    const button = props.currentStudent ? 
+    <button>Add</button> : ''
+
     const list = props.allTeachers && props.allTeachers.map((ele,i) => {
         return(
             <div key={ele.id} className='listTeachers'>
@@ -10,7 +13,10 @@ const Teachers = (props) => {
                 <div>{ele.name}</div>
                 <div>{ele.years_of_experience}</div>
                 <div>{ele.years_of_experience}</div>
-                <div>{ele.times}</div>
+                <select>{ele.availabilities.map(yel => {
+                    return <option>{yel.time}</option>
+                })}</select>
+                {button}
             </div>
         )
     })

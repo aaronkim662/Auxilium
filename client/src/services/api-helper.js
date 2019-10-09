@@ -28,7 +28,6 @@ export const loginTeacher = async (logindata) => {
     const resp = await api.post('/auth/login/teachers', { teacher: logindata });
     localStorage.setItem('authToken', resp.data.token);
     api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`;
-    console.log(resp.data.token)
     return resp.data.teacher;
 }
 
@@ -76,7 +75,7 @@ export const verifyStudent = async () => {
     const token = localStorage.getItem('authToken');
     if (token) {
         api.defaults.headers.common.authorization = `Bearer ${token}`;
-        const resp = await api.get('/auth/verify');
+        const resp = await api.get('/auth/verify/students');
         return resp.data;
     }
     return false;
@@ -84,14 +83,26 @@ export const verifyStudent = async () => {
 
 // Availabilities
 
-export const getTimes = async (data, id) => {
-    const resp = await api.get(`/teachers/${data}/availabilities`, data)
-    return resp.data
+export const getTimes = async (id) => {
+    const resp = await api.get(`/teachers/${id}/availabilities/`);    
+    return resp.data;
 };
 
 // Controllers: nested object key value pairs for strong params
 // was passing key of 2pm when the key should be time
 export const postTime = async (postData, id) => {
-    const resp = await api.post(`/teachers/${id}/availabilities`, {availability: {time: postData}})
-    return resp.data
+    const resp = await api.post(`/teachers/${id}/availabilities`, {availability: {time: postData}});
+    return resp.data;
 };
+
+// Appointments
+
+export const getAppointments = async(student_id, teacher_id) => {
+    const resp = await api.get(`/students/${student_id}/teachers/${teacher_id}/appointments`);
+    return resp.data;
+}
+
+export const postAppointments = async(student_id, teacher_id, time) => {
+    const resp = await api.post(`/students/${student_id}/teachers/${teacher_id}/appointments/${time}`);
+    return resp.data;
+}

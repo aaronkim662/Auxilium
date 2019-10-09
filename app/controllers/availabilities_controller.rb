@@ -3,12 +3,12 @@ class AvailabilitiesController < ApplicationController
     before_action :set_avail, only: [:show, :update, :destroy]
 
     def index
-        @avail = Availability.all
+        @avail = Availability.where(teacher_id: params[:teacher_id])
         render json: @avail
     end
 
     def show
-        @avail = Availability.find(params[:id])
+        @avail = Availability.all
         render json: @avail
     end
 

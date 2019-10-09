@@ -3,8 +3,11 @@ class AppointmentsController < ApplicationController
     before_action :set_appointment, only: [:show, :update, :destroy]
     def index 
         @appoint = Appointment.all
+        @student = Student.find(params[:student_id])
+        @teacher = Teacher.find(params[:teacher_id])
+        p @student.teachers
 
-        render json: @appoint
+        render json: @student.teachers
     end
 
     def show 
@@ -21,10 +24,11 @@ class AppointmentsController < ApplicationController
             render json: @appoint
         else
             render json: {error: "time not available"}
+        end
     end
 
     def update 
-        @appoint.update(:appoint_params)
+        @appoint.update(appoint_params)
         render json: @appoint
     end
 
