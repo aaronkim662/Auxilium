@@ -19,7 +19,6 @@ class Profile extends React.Component {
                 <input type='text' placeholder='Your available times' name='time_availability' value={this.props.infoTeacher.time_availablility} onChange={this.props.infoHandleChangeTeacher} />
             </form>
             <button onClick={this.props.deleteTeacher}>Delete Account</button>
-            <button onClick={this.props.handleLogout}>Logout</button>
         </> 
         : ''
 
@@ -33,7 +32,6 @@ class Profile extends React.Component {
                 <button>Update</button>
             </form>
             <button onClick={this.props.deleteStudent}>Delete Account</button>
-            <button onClick={this.props.handleLogout}>Logout</button>
         </> 
         : ''
         return(

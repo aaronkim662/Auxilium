@@ -270,7 +270,11 @@ render(){
 
     return(
       <div className='app'>
-        <Header />
+        <Header type={this.state.type}
+        currentTeacher={this.state.currentTeacher}
+        currentStudent={this.state.currentStudent}
+        handleLogout={this.handleLogout}
+        />
         <div className='mainContainer'>
         <Switch>
             <Route exact path='/' render={() => (

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import './login.css'
 
 const Login = (props) => {
     if (props.currentTeacher) {
@@ -8,14 +9,14 @@ const Login = (props) => {
         return <Redirect to='/profile' />
     }
     const student = (props.type === 'isStudent') ? 
-        <form onSubmit={props.logStudent}>
+        <form onSubmit={props.logStudent} className='loginForm'>
             <input type='text' placeholder='student username' name="username" value={props.loginStudent.username} onChange={props.logHandleChangeStudent}/>
             <input type='text' placeholder='password' name="password" value={props.loginStudent.password} onChange={props.logHandleChangeStudent}/>
             <button type='submit'>Login</button>
         </form>: ''
 
     const teacher = (props.type === 'isTeacher') ? 
-        <form onSubmit={props.logTeacher}>
+        <form onSubmit={props.logTeacher} className='loginForm'>
             <input type='text' placeholder='teacher username' name="username" value={props.loginTeacher.username} onChange={props.loginHandleChangeTeacher}/>
             <input type='text' placeholder='password' name="password" value={props.loginTeacher.password} onChange={props.loginHandleChangeTeacher}/>
             <button type='submit'>Login</button>

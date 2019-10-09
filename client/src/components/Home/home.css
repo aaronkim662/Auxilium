@@ -7,7 +7,7 @@
   }
 
 .homeBox {
-    padding-top: 20%;
+    padding-top: 10%;
 }
 
 .homeButton {
@@ -19,4 +19,27 @@
 
 .homeTitle {
     color: lightBlue;
+}
+
+@media (max-width: 580px){
+  .homeDescription {
+    display: none;
+  }
+}
+
+@media (min-width: 580px){
+  .homeStyle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .homeDescription {
+    padding-top: 10%;
+    color: darkred;
+  }
+
+  .homeBox {
+    padding-right: 5%;
+  }
 }

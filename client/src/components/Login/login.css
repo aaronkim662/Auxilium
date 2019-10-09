@@ -1,0 +1,8 @@
+.formComp {
+    height: 84vh;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+}

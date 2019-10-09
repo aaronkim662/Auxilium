@@ -125,6 +125,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
     flex-direction: row;
 }
 
+.headerName {
+  text-decoration: none
+}
 @media (min-width: 580px){
     .bm-burger-button {
         display: none;
