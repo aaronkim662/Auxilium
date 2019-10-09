@@ -9,30 +9,63 @@ const Login = (props) => {
         return <Redirect to='/profile' />
     }
     const student = (props.type === 'isStudent') ? 
+    <div className='formStudent' >
+        <h1 className='formGreet'>Hello Student!</h1>
+        <div className='formDescription'>Sign in</div>
+        <div className='formBox'>
+
         <form onSubmit={props.logStudent} className='loginForm'>
-            <input type='text' placeholder='student username' name="username" value={props.loginStudent.username} onChange={props.logHandleChangeStudent}/>
-            <input type='text' placeholder='password' name="password" value={props.loginStudent.password} onChange={props.logHandleChangeStudent}/>
-            <button type='submit'>Login</button>
-        </form>: ''
+            <input className='formInput' type='text' placeholder='username' name="username" value={props.loginStudent.username} onChange={props.logHandleChangeStudent}/>
+            <input className='formInput' type='text' placeholder='password' name="password" value={props.loginStudent.password} onChange={props.logHandleChangeStudent}/>
+            <button className='formButton' type='submit'>Login</button>
+        </form>
+        <h4>Not a member?</h4>
+        <Link to='/register' >
+                <button className='formRegister'>Go register</button>
+        </Link>
+        </div> 
+        </div> : ''
 
     const teacher = (props.type === 'isTeacher') ? 
+    <div className='formTeacher' >
+        <h1 className='formGreet'>Hello Teacher!</h1>
+        <div className='formDescription'>Sign up in</div>
+        <div className='formBox'>
+
         <form onSubmit={props.logTeacher} className='loginForm'>
-            <input type='text' placeholder='teacher username' name="username" value={props.loginTeacher.username} onChange={props.loginHandleChangeTeacher}/>
-            <input type='text' placeholder='password' name="password" value={props.loginTeacher.password} onChange={props.loginHandleChangeTeacher}/>
-            <button type='submit'>Login</button>
-        </form> : ''
+            <input className='formInput' type='text' placeholder='username' name="username" value={props.loginTeacher.username} onChange={props.loginHandleChangeTeacher}/>
+            <input className='formInput' type='text' placeholder='password' name="password" value={props.loginTeacher.password} onChange={props.loginHandleChangeTeacher}/>
+            <button className='formButton' type='submit'>Login</button>
+        </form>
+        <h4>Not a member?</h4>
+        <Link to='/register' >
+                <button className='formRegister'>Go register</button>
+        </Link>
+        </div>
+        </div> : ''
     
     console.log(props)
     return (
-        <div className='formComp'>
-            <div>{student}</div>
-            <div>{teacher}</div>
-            
-
-            <Link to='/register' >
-                <button>Go register</button>
-            </Link>
-            </div>
+        <>
+        {props.type && student}
+        {props.type && teacher}
+        
+        {/* <div className='formTeacher' >
+        <h1 className='formGreet'>Hello Teacher!</h1>
+        <div className='formDescription'>Sign in</div>
+        <div className='formBox'>
+        <form onSubmit={props.logTeacher} className='loginForm'>
+            <input className='formInput' type='text' placeholder='username' name="username" value={props.loginTeacher.username} onChange={props.loginHandleChangeTeacher}/>
+            <input className='formInput' type='text' placeholder='password' name="password" value={props.loginTeacher.password} onChange={props.loginHandleChangeTeacher}/>
+            <button className='formButton' type='submit'>Login</button>
+        </form>
+        <h4>Not a member?</h4>
+        <Link to='/register' >
+                <button className='formRegister'>Register Now</button>
+        </Link>
+        </div>
+        </div>     */}
+        </>
     )
 }
 

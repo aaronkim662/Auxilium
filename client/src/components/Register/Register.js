@@ -1,29 +1,57 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './register.css';
 
 const Login = (props) => {
     const student = (props.type === 'isStudent') ? 
-        <form onSubmit={props.makeStudent}>
-            Student
-            <input type='text' placeholder='username' name="username" value={props.registerStudent.username} onChange={props.registerHandleChangeStudent}/>
-            <input type='text' placeholder='password' name="password" value={props.registerStudent.password} onChange={props.registerHandleChangeStudent}/>
-            <button>Submit</button>
-            </form> : ''
+    <div className='registerStudent' >
+        <div className='registerDescription'>Sign In</div>
+        <form className='registerForm' onSubmit={props.makeStudent}>
+
+            <input className='registerInput' type='text' placeholder='username' name="student username" value={props.registerStudent.username} onChange={props.registerHandleChangeStudent}/>
+            <input className='registerInput' type='text' placeholder='password' name="password" value={props.registerStudent.password} onChange={props.registerHandleChangeStudent}/>
+            <button className='registerButton'>Submit</button>
+        </form>
+        <h2>Already a user?</h2>
+        <Link to='/login' >
+                <button className='registerLogin'>Login </button>
+            </Link>
+    </div> 
+    : '';
+
     const teacher = (props.type === 'isTeacher') ? 
-        <form onSubmit={props.makeTeacher}>
-            Teacher
-            <input type='text' placeholder='username' name="username" value={props.registerTeacher.username} onChange={props.registerHandleChangeTeacher}/>
-            <input type='text' placeholder='password' name="password" value={props.registerTeacher.password} onChange={props.registerHandleChangeTeacher}/>
-            <button>Submit</button>
-        </form> : ''
+    <div className='registerTeacher' >
+        <div className='registerDescription'>Sign In</div>
+        <form className='registerForm' onSubmit={props.makeTeacher}>
+            <input  className='registerInput'type='text' placeholder='username' name="username" value={props.registerTeacher.username} onChange={props.registerHandleChangeTeacher}/>
+            <input className='registerInput' type='text' placeholder='password' name="password" value={props.registerTeacher.password} onChange={props.registerHandleChangeTeacher}/>
+            <button className='registerButton'>Submit</button>
+        </form> 
+        <h2>Already a user?</h2>
+        <Link to='/login' >
+                <button className='registerLogin'>Login</button>
+            </Link>
+    </div> 
+    : '';
+
     return (
-        <div className='formComp'>
+        <div className='registerComp'>
             {student}
             {teacher}
+    {/* <div className='registerTeacher' >
+        <div className='registerDescription'>Sign In</div>
+        <form className='registerForm' onSubmit={props.makeTeacher}>
+            <input className='registerInput' type='text' placeholder='teacher username' name="username" value={props.registerTeacher.username} onChange={props.registerHandleChangeTeacher}/>
+            <input className='registerInput' type='text' placeholder='password' name="password" value={props.registerTeacher.password} onChange={props.registerHandleChangeTeacher}/>
+            <button className='registerButton'>Submit</button>
+        </form> 
+        <h2>Already a user?</h2>
+        <Link to='/login' >
+                <button className='registerLogin'>Login</button>
+            </Link> 
+        </div> */}
 
-            <Link to='/login' >
-                <button>Login</button>
-            </Link>
+            
             </div>
     )
 }

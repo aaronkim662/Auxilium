@@ -314,7 +314,8 @@ render(){
                   currentTeacher={this.state.currentTeacher}
                   type={this.state.type}
                   />)} 
-              /> : null }
+              /> 
+               : null } 
 
                 {this.state.type === 'isStudent' ? 
                   <Route path='/login' render={(props) => (
