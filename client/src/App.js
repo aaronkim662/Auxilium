@@ -263,10 +263,6 @@ componentDidMount = () => {
 }
 
 render(){
-    console.log('teacher', this.state.currentTeacher)
-    console.log('student', this.state.currentStudent)
-    console.log('times', this.state.infoTeacher)
-
 
     return(
       <div className='app'>
