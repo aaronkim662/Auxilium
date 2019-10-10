@@ -4,9 +4,9 @@ class AppointmentsController < ApplicationController
     def index 
         @appoint = Appointment.all
         @student = Student.find(params[:student_id])
-        @teacher = Teacher.find(params[:teacher_id])
+        # @teacher = Teacher.find(params[:teacher_id])
 
-        render json: @appoint, include: @student
+        render json: @student.appointments, include: :teacher
     end
 
     def show 

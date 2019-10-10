@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :students
+  resources :students do 
+    get '/appointments', to: 'appointments#index'
+    post '/teachers/:teacher_id/appointments', to: 'appointments#create'
+  end
+
   resources :teachers
   resources :availabilities
   
@@ -7,11 +11,7 @@ Rails.application.routes.draw do
     resources :availabilities
   end
 
-  resources :students do 
-    resources :teachers do 
-      resources :appointments
-    end
-  end
+ 
 
   post '/auth/login/teachers', to: 'teachers#login'
   post '/auth/login/students', to: 'students#login'

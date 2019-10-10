@@ -11,6 +11,7 @@ import Register from './components/Register/Register';
 import Teachers from './components/Teachers/Teachers';
 import { deleteTeacher,
          deleteStudent,
+        //  handleVerify,
          getAppointments,
          getOneTeacher,
          getTeachers, 
@@ -141,19 +142,34 @@ handleLogout = () => {
     this.props.history.push('/')
   };
 
+
 handleVerifyTeacher = async () => {
-    if(this.state.loginTeacher || this.state.currentTeacher){
-    const currentTeacher = await verifyTeacher();
-    this.setState({ currentTeacher })
+    if(this.state.currentTeacher === '' && this.state.currentStudent === ''){
+      console.log(this.state.currentStudent)
+      const currentTeacher = await verifyTeacher();
+      this.setState({ currentTeacher })
     };
 };
 
 handleVerifyStudent = async () => {
-  const currentStudent = await verifyStudent();
-  if(currentStudent){
-  this.setState({ currentStudent })
+  if(this.state.currentTeacher === '' && this.state.currentStudent === ''){
+    console.log(this.state.currentTeacher, this.state.currentStudent)
+    const currentStudent = await verifyStudent();
+    this.setState({ currentStudent })
   };
 };
+
+handleVerify = async () => {
+  const role = localStorage.getItem('role');
+  console.log('role', role)
+  if (role === 'student') {
+      await this.handleVerifyStudent()
+  } else if (role === 'teacher') {
+      await this.handleVerifyTeacher();
+  } else {
+      return null;
+  }
+}
 
 infoHandleChangeStudent = (e) => {
   e.preventDefault();
@@ -277,7 +293,9 @@ registerHandleChangeStudent = (e) => {
 
 updateTeacher = async (e) => {
     e.preventDefault();
-    await updateTeacher(this.state.infoTeacher, this.state.currentTeacher.id);
+    const infoTeacher = this.state.infoTeacher
+    Object.keys(infoTeacher).forEach((ele) => !infoTeacher[ele] ? delete infoTeacher[ele] : null);
+    await updateTeacher(infoTeacher, this.state.currentTeacher.id);
 };
 
 updateStudent = async (e) => {
@@ -287,8 +305,9 @@ updateStudent = async (e) => {
 
 componentDidMount = async () => {
   await this.getAllTeachers();
+  await this.handleVerify();
   // await this.handleVerifyStudent();
-  await this.handleVerifyTeacher();
+  // await this.handleVerifyTeacher();
   await this.getTime();
   if(this.state.appointments){
   await this.getTeacherOne()
