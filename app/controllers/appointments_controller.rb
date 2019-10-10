@@ -6,7 +6,7 @@ class AppointmentsController < ApplicationController
         @student = Student.find(params[:student_id])
         @teacher = Teacher.find(params[:teacher_id])
 
-        render json: @appoint
+        render json: @appoint, include: @student
     end
 
     def show 
@@ -14,16 +14,16 @@ class AppointmentsController < ApplicationController
     end
 
     def create 
-        if @teacher.availabities.pluck(:time).include? params[:time]
+        # if @teachers.pluck(:time).include? params[:time]
             @appoint = Appointment.new(appoint_params)
             @appoint.teacher = @teacher
             @appoint.student = @student
             @appoint.save
 
             render json: @appoint
-        else
-            render json: {error: "time not available"}
-        end
+        # else
+        #     render json: {error: "time not available"}
+        # end
     end
 
     def update 

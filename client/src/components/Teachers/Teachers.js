@@ -3,20 +3,19 @@ import './Teachers.css'
 // import { getTeachers } from '../../services/api-helper';
 
 const Teachers = (props) => {
-    const button = props.currentStudent ? 
-    <button>Add</button> : ''
+    // const button = props.currentStudent ? 
+    // <button onClick={() => props.postStudentAppointments(ele.id, yel.time)}>Add</button> : ''
 
-    const list = props.allTeachers && props.allTeachers.map((ele,i) => {
+    const list = props.allTeachers && props.allTeachers.sort().map((ele,i) => {
         return(
             <div key={ele.id} className='listTeachers'>
-                <div>{ele.username}</div>
-                <div>{ele.name}</div>
-                <div>{ele.years_of_experience}</div>
-                <div>{ele.years_of_experience}</div>
-                <select>{ele.availabilities.map(yel => {
-                    return <option>{yel.time}</option>
+                <div className='listUsername'>{ele.username}</div>
+                <div className='listName'>{ele.name}</div>
+                <div class='listYears'>{ele.years_of_experience}</div>
+                <select className='selectTeachers'>{ele.availabilities.map(ele1 => {
+                    return <option >{ele1.time}</option>
                 })}</select>
-                {button}
+                {/* {button} */}
             </div>
         )
     })

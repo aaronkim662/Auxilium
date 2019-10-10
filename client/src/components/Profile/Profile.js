@@ -12,7 +12,9 @@ class Profile extends React.Component {
     render(){
         const teacher = this.props.currentTeacher ? 
         <>
+        <div className='profileT'>
         <div className='profileTeacher'>Welcome {this.props.currentTeacher && this.props.currentTeacher.username}</div>
+        <h2>Your Profile</h2>
                 <form className='profileForm'onSubmit={this.props.updateTeacher} >
                 <input className='profileInput' type="text" placeholder="name" name='name' value={this.props.infoTeacher.name} onChange={this.props.infoHandleChangeTeacher}/>
                 <input className='profileInput'type="number" placeholder="Years of Experience" name='years_of_experience' value={this.props.infoTeacher.years_of_experience} onChange={this.props.infoHandleChangeTeacher}/>
@@ -23,12 +25,15 @@ class Profile extends React.Component {
                 <input className='profileInput' type='text' placeholder='Your available times' name='time_availability' value={this.props.infoTeacher.time_availablility} onChange={this.props.infoHandleChangeTeacher} />
             </form>
             <button className='profileDelete' onClick={this.props.deleteTeacher}>Delete Account</button>
+        </div>
         </> 
         : '';
 
         const student = this.props.currentStudent ? 
         <>
+        <div className='profileS'>        
         <div className='profileStudent'>Welcome {this.props.currentStudent && this.props.currentStudent.username}</div>
+        <h2>Your Profile</h2>
             <form className='profileForm' onSubmit={this.props.updateStudent} >
                 <input className='profileInput' type="text" placeholder="name" name='name' value={this.props.infoStudent.name} onChange={this.props.infoHandleChangeStudent}/>
                 <input className='profileInput' type="text" placeholder="program" name='program' value={this.props.infoStudent.program} onChange={this.props.infoHandleChangeStudent}/>
@@ -36,15 +41,16 @@ class Profile extends React.Component {
                 <button className='profileUpdate'>Update</button>
             </form>
             <button className='profileDelete' onClick={this.props.deleteStudent}>Delete Account</button>
+        </div>
+
         </> 
         : '';
 
         return(
-        <div className='profile'>
-            <h2>Your Profile</h2>
+        <>
             {student}
             {teacher}
-        </div>  
+        </> 
         )
     }
 }

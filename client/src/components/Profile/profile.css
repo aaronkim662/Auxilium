@@ -6,8 +6,52 @@
     flex-direction: column;
 }
 
+.profileS {
+    height: 84vh;
+    background-image: url('https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.profileT {
+    height: 84vh;
+
+    background-image: url('https://images.unsplash.com/photo-1461632830798-3adb3034e4c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
 .profileForm {
     display: flex;
     flex-direction: column;
     margin: 0 20% 0 20%;
+    justify-content: space-around;
 }
+
+.profileInput {
+    margin: 10px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    /* border-bottom: solid; */
+
+    /* color: white; */
+}
+
+.profileUpdate {
+    border: transparent;
+    background-color: lightblue;
+    margin: 10px;
+    border-radius: 20px;
+}
+
+.profileDelete {
+    border: transparent;
+    background-color: lightblue;
+    border-radius: 20px;
+    margin-top: 100px;
+    /* margin: 10px; */
+}
+

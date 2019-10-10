@@ -47,6 +47,7 @@ class App extends React.Component {
         username: '',
         password: '',
     },
+    oneTeacher: [],
     registerTeacher : {
         username: '',
         password: '',
@@ -81,6 +82,13 @@ deleteTeacher = async () => {
     });
 };
 
+getAllTeachers = async () => {
+  const teachers = await getTeachers()
+  this.setState({
+      teachers: teachers
+  });
+};
+
 getStudentAppointments = async() => {
   const appointments = await getAppointments(this.state.currentStudent.id, 1)
   this.setState({
@@ -89,15 +97,14 @@ getStudentAppointments = async() => {
 };
 
 getTeacherOne = async (id) => {
-  const teacher = await getOneTeacher(id);
-  return teacher.username
-};
-
-getAllTeachers = async () => {
-  const teachers = await getTeachers()
-  this.setState({
-      teachers: teachers
-  });
+  const teacher = this.state.appointments.map( async ele => {
+    const one = await getOneTeacher(ele.teacher_id)
+    console.log(one)
+    this.setState({
+      oneTeacher: [...this.state.oneTeacher, one.username]
+    })
+  })
+  
 };
 
 getTime = async () => {
@@ -280,10 +287,12 @@ updateStudent = async (e) => {
 
 componentDidMount = async () => {
   await this.getAllTeachers();
-  await this.handleVerifyStudent();
-  // await this.handleVerifyTeacher();
+  // await this.handleVerifyStudent();
+  await this.handleVerifyTeacher();
   await this.getTime();
-  
+  if(this.state.appointments){
+  await this.getTeacherOne()
+  }
 };
 
 render(){
@@ -386,7 +395,9 @@ render(){
                 
                 <Route path='/appointment' render={() => (
                   <Appointment 
-                  appointments={this.state.appointments}/>
+                  appointments={this.state.appointments}
+                  oneTeacher = {this.state.oneTeacher}
+                  getTeacherOne={this.getTeacherOne}/>
                 )} />
                 
             </Switch>
