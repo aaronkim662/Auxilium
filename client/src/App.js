@@ -1,16 +1,18 @@
 import React from 'react';
 import './App.css';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import Appointment from './components/Appointment/Appointment';
+import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
-import Footer from './components/Footer/Footer';
-import { Route, Switch, withRouter } from 'react-router-dom';
-import Teachers from './components/Teachers/Teachers'
 import Login from './components/Login/Login';
 import Profile from './components/Profile/Profile';
 import Register from './components/Register/Register';
+import Teachers from './components/Teachers/Teachers';
 import { deleteTeacher,
          deleteStudent,
          getAppointments,
+         getOneTeacher,
          getTeachers, 
          getTimes, 
          loginTeacher,
@@ -62,31 +64,36 @@ class App extends React.Component {
     type: '',
 }
 
+
 deleteStudent = async () => {
   localStorage.removeItem('authToken')
   await deleteStudent(this.state.currentStudent.id);
   this.setState({
       currentStudent : ''
-  })
-}
+  });
+};
 
 deleteTeacher = async () => {
     localStorage.removeItem('authToken')
     await deleteTeacher(this.state.currentTeacher.id);
     this.setState({
         currentTeacher : ''
-    })
-}
+    });
+};
 
-getStudentAppointments = async(teacherId) => {
-  console.log('app')
-  const appointments = await getAppointments(this.state.currentStudent.id, 1 )
+getStudentAppointments = async() => {
+  const appointments = await getAppointments(this.state.currentStudent.id, 1)
   this.setState({
     appointments
   })
-}
+};
 
-getTeach = async () => {
+getTeacherOne = async (id) => {
+  const teacher = await getOneTeacher(id);
+  return teacher.username
+};
+
+getAllTeachers = async () => {
   const teachers = await getTeachers()
   this.setState({
       teachers: teachers
@@ -97,33 +104,33 @@ getTime = async () => {
   const times = await getTimes(this.state.currentTeacher.id)
   this.setState({
       teacherTimes: times
-  })
-}
+  });
+};
 
 handleClickType = (e) => {
     if (e.target.name === 'student'){
         this.setState({
             type: 'isStudent'
-        })
-    }else if(e.target.name === 'teacher'){
+        });
+    } else if(e.target.name === 'teacher'){
       this.setState({
         type: 'isTeacher'
-      })
-    }
+      });
+    };
     this.props.history.push('/login')
-}
+};
 
 handleLogout = () => {
     localStorage.removeItem("authToken");
     if (this.state.currentTeacher){
     this.setState({
       currentTeacher: null
-    })
+    });
   }else if (this.state.currentStudent){
     this.setState({
       currentStudent: null
-    })
-  }
+    });
+  };
     this.props.history.push('/')
   };
 
@@ -131,17 +138,15 @@ handleVerifyTeacher = async () => {
     if(this.state.loginTeacher || this.state.currentTeacher){
     const currentTeacher = await verifyTeacher();
     this.setState({ currentTeacher })
-    }
-}
+    };
+};
 
 handleVerifyStudent = async () => {
-  console.log('verify')
-
   const currentStudent = await verifyStudent();
   if(currentStudent){
   this.setState({ currentStudent })
-  }
-}
+  };
+};
 
 infoHandleChangeStudent = (e) => {
   e.preventDefault();
@@ -149,37 +154,36 @@ infoHandleChangeStudent = (e) => {
   let {name, value} = e.target;
   if (name === 'years_of_experience') {
       value = parseInt(value);
-  }
+  };
   this.setState(prevState => ({
       infoStudent : {
           ...prevState.infoStudent,
           [name]: value
       }
-  }))
-}
+  }));
+};
 
 infoHandleChangeTeacher = (e) => {
     e.preventDefault();
-    e.stopPropagation();
     let {name, value} = e.target;
     if (name === 'years_of_experience') {
         value = parseInt(value);
-    }
+    };
     this.setState(prevState => ({
         infoTeacher : {
             ...prevState.infoTeacher,
             [name]: value
         }
-    }))
-}
+    }));
+};
 // login teachers
 logTeacher = async (e) => {
     e.preventDefault();
     const resp = await loginTeacher(this.state.loginTeacher)
     this.setState({
         currentTeacher: resp
-    })
-}
+    });
+};
 
 loginHandleChangeTeacher = (e) => {
     const {name, value} = e.target;
@@ -188,16 +192,16 @@ loginHandleChangeTeacher = (e) => {
             ...prevState.loginTeacher,
             [name]: value
         }
-    }))
-}
+    }));
+};
 // login students
 logStudent = async (e) => {
     e.preventDefault();
     const resp = await loginStudent(this.state.loginStudent)
     this.setState({
         currentStudent: resp
-    })
-}
+    });
+};
 
 logHandleChangeStudent = (e) => {
     const {name, value} = e.target;
@@ -206,8 +210,8 @@ logHandleChangeStudent = (e) => {
             ...prevState.loginStudent,
             [name]: value
         }
-    })) 
-}
+    })) ;
+};
 
 makeTeacher = async (e) => {
     e.preventDefault();
@@ -218,7 +222,7 @@ makeTeacher = async (e) => {
     });
 
     this.props.history.push('/profile')
-}
+  };
 };
 
 makeStudent = async (e) => {
@@ -229,21 +233,20 @@ makeStudent = async (e) => {
         currentStudent: resp
     });
     this.props.history.push('/profile')
-  }
+  };
 };
 
 postTeacherTime = async (data) => {
     data.preventDefault();
     await postTime(this.state.infoTeacher.time_availability, this.state.currentTeacher.id)
-}
+};
 
 postStudentAppointments = async (teacherId, time) => {
     const appointments = await postAppointments(this.state.currentStudent.id, teacherId, teacherId )
     this.setState({
       appointments: [...this.state.appointments, appointments]
-    })
-  }
-
+    });
+};
 
 registerHandleChangeTeacher = (e) => {
     const {name, value} = e.target;
@@ -252,8 +255,8 @@ registerHandleChangeTeacher = (e) => {
             ...prevState.registerTeacher,
             [name]: value
         }
-    }))
-}
+    }));
+};
 
 registerHandleChangeStudent = (e) => {
   const {name, value} = e.target;
@@ -262,21 +265,21 @@ registerHandleChangeStudent = (e) => {
           ...prevState.registerStudent,
           [name]: value
       }
-  }))
-}
+  }));
+};
 
 updateTeacher = async (e) => {
     e.preventDefault();
-    await updateTeacher(this.state.infoTeacher, this.state.currentTeacher.id)
-}
+    await updateTeacher(this.state.infoTeacher, this.state.currentTeacher.id);
+};
 
 updateStudent = async (e) => {
   e.preventDefault();
-  await updateStudent(this.state.infoStudent, this.state.currentStudent.id)
-}
+  await updateStudent(this.state.infoStudent, this.state.currentStudent.id);
+};
 
 componentDidMount = async () => {
-  await this.getTeach();
+  await this.getAllTeachers();
   await this.handleVerifyStudent();
   // await this.handleVerifyTeacher();
   await this.getTime();
@@ -381,12 +384,9 @@ render(){
                   />
               )} /> : null }
                 
-                <Route path='/studentprofile' render={() => (
-                    <Profile 
-                    currentStudent={this.state.currentStudent}
-                    infoStudent={this.state.infoStudent}
-                    infoHCS={this.infoHCS}                        
-                    />
+                <Route path='/appointment' render={() => (
+                  <Appointment 
+                  appointments={this.state.appointments}/>
                 )} />
                 
             </Switch>
@@ -394,7 +394,7 @@ render(){
         <Footer />
       </div>
     )
-}
+  }
 }
 
 export default withRouter(App);

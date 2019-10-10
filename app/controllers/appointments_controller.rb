@@ -5,9 +5,8 @@ class AppointmentsController < ApplicationController
         @appoint = Appointment.all
         @student = Student.find(params[:student_id])
         @teacher = Teacher.find(params[:teacher_id])
-        p @student.teachers
 
-        render json: @student.teachers
+        render json: @appoint
     end
 
     def show 
@@ -36,13 +35,11 @@ class AppointmentsController < ApplicationController
         @appoint.destroy
     end
 
-
     private
 
     def set_appointment 
         @appoint = Appointment.find(params[:id])
     end
-
 
     def get_models
         @student = Student.find(params[:student_id])

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :students do 
-    # resources :teachers do 
+    resources :teachers do 
       resources :appointments
     end
   end

@@ -21,6 +21,7 @@ const Header = (props) => {
                 {profile}
                 <ol><Link to='/teachers' className='list'>Your Teachers</Link></ol>
                 <ol><Link to='/about' className='list'>About</Link></ol>
+                <ol><Link to='/appointment' className='list'>Appointment</Link></ol>
                 {logout}
 
             </div>
@@ -30,6 +31,7 @@ const Header = (props) => {
                 {profile}
                 <ol><Link to='/teachers' className='list'>Your Teachers</Link></ol>
                 <ol><Link to='/about' className='list'>About</Link></ol>
+                <ol><Link to='/appointment' className='list'>Appointment</Link></ol>
                 {logout}
         </Menu >
         </div>

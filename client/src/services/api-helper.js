@@ -7,6 +7,12 @@ const api = axios.create({
 });
 
 // Teachers
+
+export const getOneTeacher = async (id) => {
+    const resp = await api.get(`/teachers/${id}`);
+    return resp.data;
+}
+
 export const getTeachers = async () => {
     const resp = await api.get('/teachers')
     return resp.data;
