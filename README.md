@@ -76,20 +76,20 @@ TAs can deny an appointment which will send back to the student a denial notific
 
 #### Timeline 
 
-| Component | Priority | Estimated Time | Time Invested | Actual Time |
-| --- | :---: |  :---: | :---: | :---: |
-| Create api | H |  1 Hr |  |  |
-| Create backend | H | 5 Hr |  |  |
-| Create skeleton of front end | H | 1 Hr |  |  |
-| Create login | H | 1 Hr | |  |
+| Component | Priority | Estimated Time | Time Invested |
+| --- | :---: |  :---: | :---: |
+| Create api | H |  1 Hr |  |  
+| Create backend | H | 5 Hr | 2 Hr |  
+| Create skeleton of front end | H | 1 Hr |  |  
+| Create login | H | 1 Hr | |  
 | Create form | H | 1 Hr | 
-| Display info | H | 1 Hr |  |  |
-| Style Components | H | 2 Hr |  |  |
-| Implement full CRUD to the front end | H |  |  |  |
-| PostMVP | | | |
+| Display info | H | 1 Hr |  |  
+| Style Components | H | 2 Hr |  |  
+| Implement full CRUD to the front end | H |  |  |  
+| PostMVP | | | 
 | Select times | M | 2 Hr |  |
 | Create appointment | M | 2 Hr |  |
-| Send out information/Notification | M | 4 Hr |  |   |
+| Send out information/Notification | M | 4 Hr |  |   
 | Rating | M | 2 Hr |  |
 | Private room/ chat box | M | 7 days |  |
 | Deny an appointment | M | 4 Hr |  |
