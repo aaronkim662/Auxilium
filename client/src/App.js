@@ -300,6 +300,8 @@ updateTeacher = async (e) => {
 
 updateStudent = async (e) => {
   e.preventDefault();
+  const infoStudent = this.state.infoStudent
+  Object.keys(infoStudent).forEach(ele => !infoStudent[ele] ? delete infoStudent[ele] : null);
   await updateStudent(this.state.infoStudent, this.state.currentStudent.id);
 };
 
