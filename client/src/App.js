@@ -11,7 +11,6 @@ import Register from './components/Register/Register';
 import Teachers from './components/Teachers/Teachers';
 import { deleteTeacher,
          deleteStudent,
-        //  handleVerify,
          getAppointments,
          getOneTeacher,
          getTeachers, 
@@ -91,21 +90,10 @@ getAllTeachers = async () => {
 };
 
 getStudentAppointments = async() => {
-  const appointments = await getAppointments(this.state.currentStudent.id, 1)
+  const appointments = await getAppointments(this.state.currentStudent.id)
   this.setState({
     appointments
   })
-};
-
-getTeacherOne = async (id) => {
-  const teacher = this.state.appointments.map( async ele => {
-    const one = await getOneTeacher(ele.teacher_id)
-    console.log(one)
-    this.setState({
-      oneTeacher: [...this.state.oneTeacher, one.username]
-    })
-  })
-  
 };
 
 getTime = async () => {
@@ -145,7 +133,6 @@ handleLogout = () => {
 
 handleVerifyTeacher = async () => {
     if(this.state.currentTeacher === '' && this.state.currentStudent === ''){
-      console.log(this.state.currentStudent)
       const currentTeacher = await verifyTeacher();
       this.setState({ currentTeacher })
     };
@@ -153,7 +140,6 @@ handleVerifyTeacher = async () => {
 
 handleVerifyStudent = async () => {
   if(this.state.currentTeacher === '' && this.state.currentStudent === ''){
-    console.log(this.state.currentTeacher, this.state.currentStudent)
     const currentStudent = await verifyStudent();
     this.setState({ currentStudent })
   };
@@ -161,7 +147,6 @@ handleVerifyStudent = async () => {
 
 handleVerify = async () => {
   const role = localStorage.getItem('role');
-  console.log('role', role)
   if (role === 'student') {
       await this.handleVerifyStudent()
   } else if (role === 'teacher') {
@@ -265,7 +250,7 @@ postTeacherTime = async (data) => {
 };
 
 postStudentAppointments = async (teacherId, time) => {
-    const appointments = await postAppointments(this.state.currentStudent.id, teacherId, teacherId )
+    const appointments = await postAppointments(this.state.currentStudent.id, teacherId, {time: time})
     this.setState({
       appointments: [...this.state.appointments, appointments]
     });
@@ -311,13 +296,12 @@ componentDidMount = async () => {
   // await this.handleVerifyStudent();
   // await this.handleVerifyTeacher();
   await this.getTime();
-  if(this.state.appointments){
-  await this.getTeacherOne()
-  }
+  if (this.state.currentStudent){
+    await this.getStudentAppointments()
+    }
 };
 
 render(){
-  console.log('student',this.state.currentStudent)
   console.log(this.state.appointments)
     return(
       <div className='app'>

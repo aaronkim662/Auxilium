@@ -86,35 +86,26 @@ Note: Beware of modifying this element as it can break the animations - you shou
   top: 0;
 
 }
+.navList {
+  display: flex;
+  justify-content: flex-end;
+}
+
 
 .header {
     display: flex;
     flex-direction: row;
-    border-bottom: solid;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid black;
+    width: 100%;
 }
 
 .list {
     text-decoration: none;
-
+    justify-content: flex-end;
 }
 
-.menuClass {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  position: right;
-  height: 75px;
-  background-color: rgb(178, 191, 159);
-}
-
-.menuName {
-  font-family: 'Gabriela', serif;
-  font-size: 40px;
-  margin: 3px 0 4px 12.4px;
-  width: 250px;
-}
 
 .menuSet {
     background-color: white;
@@ -126,7 +117,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .headerName {
-  text-decoration: none
+  text-decoration: none;
+  padding-left: 25px;
+  font-size: 20px;
 }
 @media (min-width: 580px){
     .bm-burger-button {
@@ -136,6 +129,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
     .bm-menu-wrap {
       display: none;
     }
+
 }
 
 @media(max-width: 580px) {

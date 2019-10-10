@@ -1,0 +1,15 @@
+.appointment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    border-bottom: 1px solid black;
+    height: 10%;
+    padding: 0 20%;
+    align-items: center;
+    
+}
+
+.appointmentBox {
+    height: 84vh;
+}

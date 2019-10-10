@@ -9,7 +9,7 @@ const Header = (props) => {
     <ol><Link to='/profile' className='list'>Profile</Link></ol> : null
 
     const logout = props.currentStudent || props.currentTeacher ? 
-    <ol><Link onClick={props.handleLogout} className='list'>Logout</Link></ol> : null
+    <ol><Link to='' onClick={props.handleLogout} className='list'>Logout</Link></ol> : null
 
 
     return (
@@ -19,7 +19,7 @@ const Header = (props) => {
                 <ol><Link to='/' className='list'>Home</Link></ol>
                 {/* <ol><Link to='/login' className='list'>Login</Link></ol> */}
                 {profile}
-                <ol><Link to='/teachers' className='list'>Your Teachers</Link></ol>
+                <ol><Link to='/teachers' className='list'>Teachers</Link></ol>
                 <ol><Link to='/about' className='list'>About</Link></ol>
                 <ol><Link to='/appointment' className='list'>Appointment</Link></ol>
                 {logout}
@@ -27,9 +27,8 @@ const Header = (props) => {
             </div>
             <Menu className="menuSet" right>
             <ol><Link to='/'>Home</Link></ol>
-                {/* <ol><Link to='/login' className='list'>Login</Link></ol> */}
                 {profile}
-                <ol><Link to='/teachers' className='list'>Your Teachers</Link></ol>
+                <ol><Link to='/teachers' className='list'>Teachers</Link></ol>
                 <ol><Link to='/about' className='list'>About</Link></ol>
                 <ol><Link to='/appointment' className='list'>Appointment</Link></ol>
                 {logout}

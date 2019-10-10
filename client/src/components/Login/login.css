@@ -30,7 +30,7 @@
 }
 
 .formStudent {
-    height: 84vh;
+    height: 100%;
     background-image: url('https://images.unsplash.com/photo-1479920252409-6e3d8e8d4866?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
     background-repeat: no-repeat;
     background-size: cover;
@@ -45,7 +45,6 @@
     background-position: center;
     display: flex;
     flex-direction: row;
-
 }
 .loginForm {
     display: flex;
@@ -56,12 +55,27 @@
 }
 
 @media (max-width: 580px){
+
+    h4 {
+        font-size: 25px;
+        margin: 10px;
+        color: rgb(0, 0, 0);
+    }
+
     .formDescription {
       display: none;
     }
 
     .formTeacher {
         display: block;
+    }
+
+    .formBox {
+        padding: 30px 30px 130px 30px;
+    }
+
+    .formInput {
+        width: 100%;
     }
   }
   
@@ -74,5 +88,10 @@
 
     .formGreet {
         display: none;
+    }
+
+    .formStudent {
+        display: flex;
+        
     }
 }

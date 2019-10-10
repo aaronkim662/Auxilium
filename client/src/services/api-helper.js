@@ -122,12 +122,12 @@ export const postTime = async (postData, id) => {
 
 // Appointments
 
-export const getAppointments = async(student_id, teacher_id) => {
-    const resp = await api.get(`/students/${student_id}/teachers/${teacher_id}/appointments`);
+export const getAppointments = async(student_id) => {
+    const resp = await api.get(`/students/${student_id}/appointments`);
     return resp.data;
 }
 
 export const postAppointments = async(student_id, teacher_id, time) => {
-    const resp = await api.post(`/students/${student_id}/teachers/${teacher_id}/appointments/${time}`);
+    const resp = await api.post(`/students/${student_id}/teachers/${teacher_id}/appointments/`, time);
     return resp.data;
 }

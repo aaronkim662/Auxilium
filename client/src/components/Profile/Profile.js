@@ -4,9 +4,9 @@ import './profile.css'
 class Profile extends React.Component {
 
     componentDidMount = async () => {
-        if (this.props.currentStudent){
-        await this.props.getStudentAppointments()
-        }
+        // if (this.props.currentStudent){
+        // await this.props.getStudentAppointments()
+        // }
     }
     
     render(){

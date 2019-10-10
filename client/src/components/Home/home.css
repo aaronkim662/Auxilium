@@ -1,3 +1,11 @@
+h1 {
+  font-size: 50px;
+}
+
+h5 {
+  font-size: 20px;
+}
+
 .homeStyle {
     height: 84vh;
     background-image: url('https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80');
@@ -13,17 +21,51 @@
 .homeButton {
   border: solid;
   border-radius: 40px;
+  font-size: 18px;
   color: brown;
-  
+  width: 150px;
+  height: 35px;
 }
 
 .homeTitle {
     color: lightBlue;
+    font-size: 30px;
+}
+
+.teacherStudentBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 @media (max-width: 580px){
+
+  h2 {
+    font-size: 35px;
+  }
+  .homeStyle {
+    display: flex;
+    justify-content: center;
+  }
+
   .homeDescription {
     display: none;
+  }
+
+  .homeBox {
+    border: 4px solid black;
+    border-radius: 25px;
+    height: 60%;
+    width: 75%;
+    background-color: rgba(0,0,0,.7);
+    margin: 40px 0 0 0;
+    display: flex; 
+    flex-direction: column;
+  }
+
+  .teacherStudentBox {
+    flex-direction: column;
   }
 }
 
@@ -35,11 +77,24 @@
   }
 
   .homeDescription {
+    height: 50%;
+    width: 40%;
     padding-top: 10%;
-    color: darkred;
+    color: rgb(224, 36, 36);
+    border: 2px solid black;
+    border-radius: 25px;
+    background-color: rgba(0,0,0,.7);
+    margin: 40px 0 0 0;
   }
-
+  
   .homeBox {
-    padding-right: 5%;
+    border: 4px solid black;
+    border-radius: 25px;
+    height: 50%;
+    width: 40%;
+    background-color: rgba(0,0,0,.7);
+    margin: 40px 0 0 0;
   }
+  
+
 }

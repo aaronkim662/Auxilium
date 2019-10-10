@@ -1,24 +1,22 @@
 import React from 'react';
-
+import './appointment.css'
 
 const Appointment = (props) => {
-    console.log('appoint',props)
-    const list = props.appointments && props.appointments.map( (ele,i) => {
 
-        //make the api call here
-        // add the returned name to the object
-        // const teacher = await props.getTeacherOne(ele.teacher_id)
-        // console.log(teacher)
+    const list = props.appointments && props.appointments.map( (ele,i) => {
         return (
-            <>
-            <div>{props.oneTeacher[i]}</div>
-            <div>{ele.time}</div>
-            </>
+            <div className='appointment' key={i}>
+            <div>Your teacher is: {ele.teacher.username}</div>
+            <div>At: {ele.time}</div>
+            </div>
         )
     })
     return (
         <>
+        <div className='appointmentBox'>
+        <h2>Your Appointments</h2>
         {list}
+        </div>
         </>
     )
 }

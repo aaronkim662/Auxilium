@@ -3,19 +3,28 @@ import './Teachers.css'
 // import { getTeachers } from '../../services/api-helper';
 
 const Teachers = (props) => {
-    // const button = props.currentStudent ? 
-    // <button onClick={() => props.postStudentAppointments(ele.id, yel.time)}>Add</button> : ''
+
+    const [time, setTime] = React.useState(0)
+
+    const changeTime = (e) => {
+        console.log('clicl')
+        setTime(e.target.value)
+    }
+
+    // const handleClick(id) {
+    //     props.postStudentAppointments(ele.id, time.time  )
+    // }
 
     const list = props.allTeachers && props.allTeachers.sort().map((ele,i) => {
         return(
             <div key={ele.id} className='listTeachers'>
                 <div className='listUsername'>{ele.username}</div>
                 <div className='listName'>{ele.name}</div>
-                <div class='listYears'>{ele.years_of_experience}</div>
-                <select className='selectTeachers'>{ele.availabilities.map(ele1 => {
-                    return <option >{ele1.time}</option>
+                <div className='listYears'>{ele.years_of_experience}</div>
+                <select name="Select Time" onChange={(e) => changeTime(e)} className='selectTeachers'>{ele.availabilities.map(ele1 => {
+                    return <option>{ele1.time}</option>
                 })}</select>
-                {/* {button} */}
+                <button onClick={() =>  props.postStudentAppointments(ele.id,time)}>Make the appointment</button>
             </div>
         )
     })
@@ -26,6 +35,7 @@ const Teachers = (props) => {
             <div>Username</div> 
             <div>Name</div>
             <div>Years of Experience</div>  
+            <div>Select Times</div>
             <div>Times</div>
             </div>
         <div className='teachers'>{list}</div>

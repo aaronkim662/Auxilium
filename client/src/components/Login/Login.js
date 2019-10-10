@@ -49,22 +49,6 @@ const Login = (props) => {
         <>
         {props.type && student}
         {props.type && teacher}
-        
-        {/* <div className='formTeacher' >
-        <h1 className='formGreet'>Hello Teacher!</h1>
-        <div className='formDescription'>Sign in</div>
-        <div className='formBox'>
-        <form onSubmit={props.logTeacher} className='loginForm'>
-            <input className='formInput' type='text' placeholder='username' name="username" value={props.loginTeacher.username} onChange={props.loginHandleChangeTeacher}/>
-            <input className='formInput' type='text' placeholder='password' name="password" value={props.loginTeacher.password} onChange={props.loginHandleChangeTeacher}/>
-            <button className='formButton' type='submit'>Login</button>
-        </form>
-        <h4>Not a member?</h4>
-        <Link to='/register' >
-                <button className='formRegister'>Register Now</button>
-        </Link>
-        </div>
-        </div>     */}
         </>
     )
 }
