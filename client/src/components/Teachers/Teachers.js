@@ -10,11 +10,7 @@ const Teachers = (props) => {
         console.log('clicl')
         setTime(e.target.value)
     }
-
-    // const handleClick(id) {
-    //     props.postStudentAppointments(ele.id, time.time  )
-    // }
-
+    
     const list = props.allTeachers && props.allTeachers.sort().map((ele,i) => {
         return(
             <div key={ele.id} className='listTeachers'>

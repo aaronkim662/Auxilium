@@ -6,7 +6,11 @@ class AppointmentsController < ApplicationController
         @student = Student.find(params[:student_id])
         # @teacher = Teacher.find(params[:teacher_id])
 
+        # if @student
         render json: @student.appointments, include: :teacher
+        # else
+        # render json: @teacher.appointments, include: :student
+        # end
     end
 
     def show 

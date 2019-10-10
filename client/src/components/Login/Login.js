@@ -3,11 +3,13 @@ import { Link, Redirect } from 'react-router-dom';
 import './login.css'
 
 const Login = (props) => {
+    
     if (props.currentTeacher) {
         return <Redirect to='/profile' />
     } else if (props.currentStudent) {
         return <Redirect to='/profile' />
     }
+
     const student = (props.type === 'isStudent') ? 
     <div className='formStudent' >
         <h1 className='formGreet'>Hello Student!</h1>
@@ -44,7 +46,6 @@ const Login = (props) => {
         </div>
         </div> : ''
     
-    console.log(props)
     return (
         <>
         {props.type && student}

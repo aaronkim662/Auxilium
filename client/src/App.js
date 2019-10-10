@@ -11,8 +11,7 @@ import Register from './components/Register/Register';
 import Teachers from './components/Teachers/Teachers';
 import { deleteTeacher,
          deleteStudent,
-         getAppointments,
-         getOneTeacher,
+         getAppointments, 
          getTeachers, 
          getTimes, 
          loginTeacher,
@@ -47,6 +46,7 @@ class App extends React.Component {
         username: '',
         password: '',
     },
+    listStudent: [],
     oneTeacher: [],
     registerTeacher : {
         username: '',
@@ -64,7 +64,6 @@ class App extends React.Component {
     },
     type: '',
 }
-
 
 deleteStudent = async () => {
   localStorage.removeItem('authToken')
@@ -88,6 +87,10 @@ getAllTeachers = async () => {
       teachers: teachers
   });
 };
+
+// getStudentFromAppointments = async() => {
+//   const list = await getAppointments()
+// }
 
 getStudentAppointments = async() => {
   const appointments = await getAppointments(this.state.currentStudent.id)
@@ -293,8 +296,6 @@ updateStudent = async (e) => {
 componentDidMount = async () => {
   await this.getAllTeachers();
   await this.handleVerify();
-  // await this.handleVerifyStudent();
-  // await this.handleVerifyTeacher();
   await this.getTime();
   if (this.state.currentStudent){
     await this.getStudentAppointments()
@@ -302,7 +303,6 @@ componentDidMount = async () => {
 };
 
 render(){
-  console.log(this.state.appointments)
     return(
       <div className='app'>
         <Header type={this.state.type}
@@ -320,6 +320,7 @@ render(){
               )} />
 
               {/* Register */}
+
                 <Route path='/register' render={(props) => (
                     <Register {...props}
                     registerHandleChangeTeacher={this.registerHandleChangeTeacher}
@@ -331,7 +332,9 @@ render(){
                     type={this.state.type}
                     />
                     )} />
+
                 {/* Map through teachers */}
+                
                 <Route path='/teachers' render={(props) => (
                 <Teachers {...props} 
                     allTeachers={this.state.teachers}
@@ -397,13 +400,12 @@ render(){
                     getStudentAppointments={this.getStudentAppointments}
                   />
               )} /> : null }
-                
+              
                 <Route path='/appointment' render={() => (
                   <Appointment 
                   appointments={this.state.appointments}
-                  oneTeacher = {this.state.oneTeacher}
-                  getTeacherOne={this.getTeacherOne}/>
-                )} />
+                  oneTeacher = {this.state.oneTeacher}/>
+                )} /> : ''
                 
             </Switch>
         </div>

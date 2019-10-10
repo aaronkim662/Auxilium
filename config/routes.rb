@@ -4,6 +4,11 @@ Rails.application.routes.draw do
     post '/teachers/:teacher_id/appointments', to: 'appointments#create'
   end
 
+  resources :teachers do
+    get '/appointments', to: 'appointments#index'
+
+  end
+
   resources :teachers
   resources :availabilities
   
