@@ -1,27 +1,4 @@
 # README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 # Auxilium: Have a learning Experience
 
 This app allows students to make an appointment with teachers if they have questions about certain topics. Students and teachers can agree on an online meeting time. All users can edit their information or delete their account. 
@@ -80,12 +57,12 @@ TAs can deny an appointment which will send back to the student a denial notific
 | --- | :---: |  :---: | :---: |
 | Create api | H |  1 Hr |  |  
 | Create backend | H | 5 Hr | 2 Hr |  
-| Create skeleton of front end | H | 1 Hr |  |  
-| Create login | H | 1 Hr | |  
-| Create form | H | 1 Hr | 
-| Display info | H | 1 Hr |  |  
-| Style Components | H | 2 Hr |  |  
-| Implement full CRUD to the front end | H |  |  |  
+| Create skeleton of front end | H | 1 Hr | 20 mins |  
+| Create login | H | 1 Hr | 30 mins |  
+| Create form | H | 1 Hr | 30 mins |
+| Display info | H | 1 Hr | 30 mins |  
+| Style Components | H | 2 Hr | 3 Hr |  
+| Implement full CRUD to the front end | H | 5 Hr | 5 Hr |   
 | PostMVP | | | 
 | Select times | M | 2 Hr |  |
 | Create appointment | M | 2 Hr |  |
