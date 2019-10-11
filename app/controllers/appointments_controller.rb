@@ -36,7 +36,10 @@ class AppointmentsController < ApplicationController
     end
 
     def destroy 
+        if localStorage.getItem('role') == 'teacher'
+        @teacher = Teacher.find(params[:id])
         @appoint.destroy
+        end
     end
 
     private

@@ -4,6 +4,8 @@
     border-color: blue;
     background-color: lightblue;
     margin-top: 15px;
+    width: 81%;
+    margin-left: 10%;
 }
 
 .registerForm {
@@ -19,10 +21,11 @@
     border-radius: 0px;
     height: 20px;
     width: 80%;
+    margin-left: 10%;
 }
 
 .registerLogin {
-    width: 60%;
+    width: 50%;
     height: 20px;
     background-color: tomato;
     margin-top: 15px;

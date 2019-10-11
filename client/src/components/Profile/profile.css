@@ -1,17 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 .profile {
     height: 84vh;
+    
 }
 .profileTeacher {
     display: flex;
     flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    color: rgb(117, 84, 41);
 }
 
+.profileStudent {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    color: rgb(117, 84, 41);
+}
 .profileS {
     height: 84vh;
     background-image: url('https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    
 }
 
 .profileT {
@@ -28,6 +44,8 @@
     flex-direction: column;
     margin: 0 20% 0 20%;
     justify-content: space-around;
+    font-family: 'Roboto', sans-serif;
+
 }
 
 .profileInput {
@@ -36,6 +54,7 @@
     border-left: none;
     border-right: none;
     /* border-bottom: solid; */
+    font-family: 'Roboto', sans-serif;
 
     /* color: white; */
 }
@@ -53,5 +72,7 @@
     border-radius: 20px;
     margin-top: 100px;
     /* margin: 10px; */
+    font-family: 'Roboto', sans-serif;
+
 }
 

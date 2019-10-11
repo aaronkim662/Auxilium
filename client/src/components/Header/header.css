@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Gabriela&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 .bm-burger-button {
   margin-left:92vw;
@@ -89,6 +90,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .navList {
   display: flex;
   justify-content: flex-end;
+  
 }
 
 
@@ -99,16 +101,22 @@ Note: Beware of modifying this element as it can break the animations - you shou
     align-items: center;
     border-bottom: 2px solid black;
     width: 100%;
+    font-family: 'Roboto', sans-serif;
+
 }
 
 .list {
     text-decoration: none;
     justify-content: flex-end;
+    font-family: 'Roboto', sans-serif;
+
 }
 
 
 .menuSet {
     background-color: white;
+    font-family: 'Roboto', sans-serif;
+
 }
 
 .navList {
@@ -121,6 +129,17 @@ Note: Beware of modifying this element as it can break the animations - you shou
   padding-left: 25px;
   font-size: 20px;
 }
+
+/* .headerName:hover {
+  font-size: 100px;
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+
+} */
+
+  /* .aux:hover {
+    font-size: 100px;
+  } */
+
 @media (min-width: 580px){
     .bm-burger-button {
         display: none;

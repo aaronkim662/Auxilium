@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :teachers do
     get '/appointments', to: 'appointments#index'
+    delete '/appointments', to: 'appointments#destroy'
 
   end
 

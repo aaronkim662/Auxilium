@@ -31,11 +31,13 @@ class App extends React.Component {
     currentStudent: '',
     currentTeacher: '',
     infoTeacher : {
+        email: '',
         name: '',
-        years_of_experience : 0,
+        years_of_experience : '',
         time_availability : ''
     },
     infoStudent : {
+        email: '',
         name: '',
         cohort: '',
         program: '',
@@ -92,7 +94,11 @@ getAllTeachers = async () => {
 //   const list = await getAppointments()
 // }
 
-getStudentAppointments = async() => {
+// getTeacherAppointments = async () => {
+//   const appointments = await getAppointments
+// }
+
+getStudentAppointments = async () => {
   const appointments = await getAppointments(this.state.currentStudent.id)
   this.setState({
     appointments
@@ -293,6 +299,7 @@ updateStudent = async (e) => {
   await updateStudent(this.state.infoStudent, this.state.currentStudent.id);
 };
 
+
 componentDidMount = async () => {
   await this.getAllTeachers();
   await this.handleVerify();
@@ -334,7 +341,7 @@ render(){
                     )} />
 
                 {/* Map through teachers */}
-                
+
                 <Route path='/teachers' render={(props) => (
                 <Teachers {...props} 
                     allTeachers={this.state.teachers}

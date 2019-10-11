@@ -3,14 +3,14 @@ import './appointment.css'
 
 const Appointment = (props) => {
 
-    const list = props.appointments && props.appointments.map( (ele,i) => {
+    const list = props.appointments && props.appointments.map((ele,i) => {
         return (
             <div className='appointment' key={i}>
-            <div>Your teacher is: {ele.teacher.username}</div>
-            <div>At: {ele.time}</div>
-            </div>
+            <div>Your teacher is: {ele.teacher && ele.teacher.username}</div>
+            <div>At: {ele.time && ele.time}</div>
+            </div> 
         )
-    })
+    }) 
     return (
         <>
         <div className='appointmentBox'>

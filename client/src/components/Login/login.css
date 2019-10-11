@@ -6,12 +6,17 @@
     margin-top: 15px;
 }
 
-.formDescription {
+.formButton:hover {
+    background-color: purple;
 }
 
-.formGreet {
-    margin: 0 auto;
+.formDescription {
+
 }
+
+/* .formGreet {
+    margin: 0 auto;
+} */
 
 .formInput {
     margin-top: 15px;
@@ -23,6 +28,13 @@
 
 
 .formRegister {
+    width: 60%;
+    height: 20px;
+    background-color: tomato;
+    margin-top: 15px;
+}
+
+.formRegisterTeacher {
     width: 60%;
     height: 20px;
     background-color: tomato;
@@ -87,11 +99,43 @@
     }
 
     .formGreet {
-        display: none;
+        /* display: none; */
     }
 
     .formStudent {
         display: flex;
+        flex-direction: column;
+        height: 84vh;
+    }
+    .formInput {
+        margin-top: 15px;
+        border-radius: 0px;
+        height: 20px;
+        width: 49vh;
+        margin-left: 30%;
         
+    }
+
+    .loginForm {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* margin: 0 30% 0 30%; */
+    }
+
+    .formButton {
+        width: 50vh;
+        margin-left: 30%;
+
+    }
+
+    .formRegister {
+        width: 50vh;
+        margin-left: 9%;
+    }
+
+    .formRegisterTeacher {
+        width: 50vh;
+        margin-left: 38%;
     }
 }
