@@ -35,10 +35,24 @@
     margin-top: 100px;
 }
 
+.infoDelete {
+    border: transparent;
+    background-color: lightblue;
+    border-radius: 20px;
+    align-content: left;
+    margin-left: 10px;
+}
+
 .infoName {
     font-size: 40px;
     color: rgb(218, 88, 103);
     margin-bottom: 30px;
+}
+
+.infoTimes {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
 }
 
 .infoType {
