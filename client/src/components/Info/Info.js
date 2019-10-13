@@ -32,8 +32,7 @@ const Info = (props) => {
 
     <Link to='/profile'><button className='infoButton'>Update your information</button></Link>
     </div> : null;
-    console.log(props)
-                    
+                        
     return (
         <>
             {student}

@@ -318,7 +318,6 @@ componentDidMount = async () => {
 };
 
 render(){
-  console.log(this.state.teacherTimes)
     return(
       <div className='app'>
         <Header type={this.state.type}
