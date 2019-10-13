@@ -5,12 +5,14 @@ import Appointment from './components/Appointment/Appointment';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
+import Info from './components/Info/Info';
 import Login from './components/Login/Login';
 import Profile from './components/Profile/Profile';
 import Register from './components/Register/Register';
 import Teachers from './components/Teachers/Teachers';
 import { deleteTeacher,
          deleteStudent,
+         deleteTimes,
          getAppointments, 
          getTeachers, 
          getTimes, 
@@ -34,7 +36,7 @@ class App extends React.Component {
         email: '',
         name: '',
         years_of_experience : '',
-        time_availability : ''
+        time_availability : '',
     },
     infoStudent : {
         email: '',
@@ -73,6 +75,7 @@ deleteStudent = async () => {
   this.setState({
       currentStudent : ''
   });
+  this.props.history.push('/');
 };
 
 deleteTeacher = async () => {
@@ -81,7 +84,13 @@ deleteTeacher = async () => {
     this.setState({
         currentTeacher : ''
     });
+    this.props.history.push('/');
 };
+
+deleteTime = async (time_id) => {
+  const time = await deleteTimes(this.state.currentTeacher.id, time_id);
+  this.props.history.push('/info');
+}
 
 getAllTeachers = async () => {
   const teachers = await getTeachers()
@@ -89,14 +98,6 @@ getAllTeachers = async () => {
       teachers: teachers
   });
 };
-
-// getStudentFromAppointments = async() => {
-//   const list = await getAppointments()
-// }
-
-// getTeacherAppointments = async () => {
-//   const appointments = await getAppointments
-// }
 
 getStudentAppointments = async () => {
   const appointments = await getAppointments(this.state.currentStudent.id)
@@ -200,6 +201,8 @@ logTeacher = async (e) => {
     this.setState({
         currentTeacher: resp
     });
+    this.props.history.push('/info')
+
 };
 
 loginHandleChangeTeacher = (e) => {
@@ -218,6 +221,8 @@ logStudent = async (e) => {
     this.setState({
         currentStudent: resp
     });
+    this.props.history.push('/info')
+
 };
 
 logHandleChangeStudent = (e) => {
@@ -238,7 +243,7 @@ makeTeacher = async (e) => {
         currentTeacher: resp
     });
 
-    this.props.history.push('/profile')
+    this.props.history.push('/info')
   };
 };
 
@@ -249,7 +254,7 @@ makeStudent = async (e) => {
     this.setState({
         currentStudent: resp
     });
-    this.props.history.push('/profile')
+    this.props.history.push('/info')
   };
 };
 
@@ -287,9 +292,11 @@ registerHandleChangeStudent = (e) => {
 
 updateTeacher = async (e) => {
     e.preventDefault();
+    let counter = 0
     const infoTeacher = this.state.infoTeacher
     Object.keys(infoTeacher).forEach((ele) => !infoTeacher[ele] ? delete infoTeacher[ele] : null);
     await updateTeacher(infoTeacher, this.state.currentTeacher.id);
+    this.props.history.push('/info')
 };
 
 updateStudent = async (e) => {
@@ -297,6 +304,7 @@ updateStudent = async (e) => {
   const infoStudent = this.state.infoStudent
   Object.keys(infoStudent).forEach(ele => !infoStudent[ele] ? delete infoStudent[ele] : null);
   await updateStudent(this.state.infoStudent, this.state.currentStudent.id);
+  this.props.history.push('/info')
 };
 
 
@@ -310,6 +318,7 @@ componentDidMount = async () => {
 };
 
 render(){
+  console.log(this.state.teacherTimes)
     return(
       <div className='app'>
         <Header type={this.state.type}
@@ -406,6 +415,21 @@ render(){
                     appointments={this.state.appointments}
                     getStudentAppointments={this.getStudentAppointments}
                   />
+              )} /> : null }
+              {this.state.currentTeacher ? 
+              <Route path='/info' render={() => (
+                <Info 
+                currentTeacher={this.state.currentTeacher}
+                teacherTimes={this.state.teacherTimes}
+                deleteTime={this.deleteTime}
+                />
+              )} /> : null }
+
+              {this.state.currentStudent ? 
+              <Route path='/info' render={() => (
+                <Info 
+                currentStudent={this.state.currentStudent}
+                />
               )} /> : null }
               
                 <Route path='/appointment' render={() => (

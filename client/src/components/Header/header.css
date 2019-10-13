@@ -130,16 +130,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
   font-size: 20px;
 }
 
-/* .headerName:hover {
-  font-size: 100px;
-  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
-
-} */
-
-  /* .aux:hover {
-    font-size: 100px;
-  } */
-
 @media (min-width: 580px){
     .bm-burger-button {
         display: none;

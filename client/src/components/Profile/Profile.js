@@ -2,19 +2,13 @@ import React from 'react';
 import './profile.css'
 
 class Profile extends React.Component {
-
-    componentDidMount = async () => {
-        // if (this.props.currentStudent){
-        // await this.props.getStudentAppointments()
-        // }
-    }
     
     render(){
         const teacher = this.props.currentTeacher ? 
         <>
         <div className='profileT'>
-        <div className='profileTeacher'>Welcome {this.props.currentTeacher && this.props.currentTeacher.username}</div>
-        <h2>Your Profile</h2>
+        <div className='profileTeacher'>Welcome Teacher {this.props.currentTeacher && this.props.currentTeacher.username}</div>
+        <h2>Update your profile</h2>
                 <form className='profileForm'onSubmit={this.props.updateTeacher} >
                 <input className='profileInput' type="text" placeholder="email" name='email' value={this.props.infoTeacher.email} onChange={this.props.infoHandleChangeTeacher}/>
                 <input className='profileInput' type="text" placeholder="name" name='name' value={this.props.infoTeacher.name} onChange={this.props.infoHandleChangeTeacher}/>
@@ -33,8 +27,8 @@ class Profile extends React.Component {
         const student = this.props.currentStudent ? 
         <>
         <div className='profileS'>        
-        <div className='profileStudent'>Welcome {this.props.currentStudent && this.props.currentStudent.username}</div>
-        <h2>Your Profile</h2>
+        <div className='profileStudent'>Welcome Student {this.props.currentStudent && this.props.currentStudent.username}</div>
+        <h2>Update your profile</h2>
             <form className='profileForm' onSubmit={this.props.updateStudent} >
                 <input className='profileInput' type="text" placeholder="email" name='email' value={this.props.infoStudent.email} onChange={this.props.infoHandleChangeStudent}/>
                 <input className='profileInput' type="text" placeholder="name" name='name' value={this.props.infoStudent.name} onChange={this.props.infoHandleChangeStudent}/>

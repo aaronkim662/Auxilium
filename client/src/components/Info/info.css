@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.infoStudent {
+    height: 84vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    background-image: url('https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.infoTeacher {
+    height: 84vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    background-image: url('https://images.unsplash.com/photo-1461632830798-3adb3034e4c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.infoButton {
+    border: transparent;
+    background-color: lightblue;
+    margin: 10px;
+    border-radius: 20px;
+    align-content: left;
+    margin-top: 100px;
+}
+
+.infoName {
+    font-size: 40px;
+    color: rgb(218, 88, 103);
+    margin-bottom: 30px;
+}
+
+.infoType {
+    text-align: left;
+    margin-left: 30%;
+    color: rgb(218, 88, 103);
+}

@@ -1,25 +1,12 @@
 
 const axios = require('axios');
 
-// const BASE_URL = 'http://localhost:3001';
-const BASE_URL = 'https://auxilium-react-rails.herokuapp.com/'
+const BASE_URL = 'http://localhost:3001';
+// const BASE_URL = 'https://auxilium-react-rails.herokuapp.com/'
 
 const api = axios.create({
     baseURL: BASE_URL
 });
-
-// export const handleVerify = async () => {
-//     const role = localStorage.getItem('role');
-//     if (role === 'student') {
-//         await handleVerifyStudent()
-//     } else if (role === 'teacher') {
-//         await handleVerifyTeacher();
-//     } else {
-//         return null;
-//     }
-// }
-
-// Teachers
 
 export const getOneTeacher = async (id) => {
     const resp = await api.get(`/teachers/${id}`);
@@ -108,6 +95,11 @@ export const verifyStudent = async () => {
 
 
 // Availabilities
+
+export const deleteTimes = async (teacher_id, avail_id) => {
+    const resp = await api.delete(`/teachers/${teacher_id}/availabilities/${avail_id}`)
+    return resp.data;
+}
 
 export const getTimes = async (id) => {
     const resp = await api.get(`/teachers/${id}/availabilities/`);    

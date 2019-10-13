@@ -11,15 +11,19 @@ const Teachers = (props) => {
         setTime(e.target.value)
     }
     
-    const list = props.currentStudent ? props.allTeachers && props.allTeachers.sort().map((ele,i) => {
+    const list = props.currentStudent ? props.allTeachers && props.allTeachers.map((ele,i) => {
         return(
             <div key={ele.id} className='listTeachers' id={i}>
                 <div className='listUsername'>{ele.username}</div>
                 {/* <div className='listName'>{ele.name}</div> */}
                 <div className='listYears'>{ele.years_of_experience}</div>
                 <select name="Select Time" onChange={(e) => changeTime(e)} className='selectTeachers'>{ele.availabilities.map(ele1 => {
-                    return <option>{ele1.time}</option>
-                })}</select>
+                    return (
+                    <>
+                    <option>{ele1.time}</option>
+                        </>
+                    
+                )})}</select>
                 <button onClick={() =>  props.postStudentAppointments(ele.id,time)}>Make the appointment</button>
             </div>
         )
