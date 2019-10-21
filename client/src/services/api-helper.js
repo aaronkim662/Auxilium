@@ -1,8 +1,8 @@
 
 const axios = require('axios');
 
-const BASE_URL = 'http://localhost:3001';
-// const BASE_URL = 'https://auxilium-react-rails.herokuapp.com/'
+// const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'https://auxilium-react-rails.herokuapp.com/'
 
 const api = axios.create({
     baseURL: BASE_URL
