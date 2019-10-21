@@ -269,7 +269,6 @@ postTeacherTime = async (data) => {
 };
 
 postStudentAppointments = async (teacher, time) => {
-  console.log(teacher.availabilities)
     if(time === undefined){
       time = teacher.availabilities[0].time
     }
@@ -337,7 +336,6 @@ componentDidMount = async () => {
 };
 
 render(){
-  console.log('s', this.state.currentStudent)
   let redirect = this.state.redirect && <Redirect to={"/info"}/>
     return(
       <div className='app'>
