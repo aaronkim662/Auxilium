@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Appointment from './components/Appointment/Appointment';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
@@ -88,7 +88,8 @@ deleteTeacher = async () => {
 };
 
 deleteTime = async (time_id) => {
-  const time = await deleteTimes(this.state.currentTeacher.id, time_id);
+  await deleteTimes(this.state.currentTeacher.id, time_id);
+  await this.getTime();
   this.props.history.push('/info');
 }
 
@@ -242,7 +243,7 @@ makeTeacher = async (e) => {
     this.setState({
         currentTeacher: resp
     });
-
+    await this.handleVerify();
     this.props.history.push('/info')
   };
 };
@@ -252,22 +253,34 @@ makeStudent = async (e) => {
     if (this.state.registerStudent.username !== "" && this.state.registerStudent.password !== "") {
     const resp = await registerStudent(this.state.registerStudent);
     this.setState({
-        currentStudent: resp
+        currentStudent: resp,
+        redirect: true
     });
-    this.props.history.push('/info')
+    await this.handleVerify();
+    // this.props.history.push('/info')
   };
 };
 
 postTeacherTime = async (data) => {
     data.preventDefault();
     await postTime(this.state.infoTeacher.time_availability, this.state.currentTeacher.id)
+    await this.getTime();
+    this.props.history.push('/info')
 };
 
-postStudentAppointments = async (teacherId, time) => {
-    const appointments = await postAppointments(this.state.currentStudent.id, teacherId, {time: time})
+postStudentAppointments = async (teacher, time) => {
+  console.log(teacher.availabilities)
+    if(time === undefined){
+      time = teacher.availabilities[0].time
+    }
+    const appointments = await postAppointments(this.state.currentStudent.id, teacher.id, {time: time})
+    await this.getStudentAppointments();
     this.setState({
       appointments: [...this.state.appointments, appointments]
     });
+    await this.getStudentAppointments();
+
+    this.props.history.push('/appointment')
 };
 
 registerHandleChangeTeacher = (e) => {
@@ -278,6 +291,7 @@ registerHandleChangeTeacher = (e) => {
             [name]: value
         }
     }));
+    
 };
 
 registerHandleChangeStudent = (e) => {
@@ -292,19 +306,24 @@ registerHandleChangeStudent = (e) => {
 
 updateTeacher = async (e) => {
     e.preventDefault();
-    let counter = 0
+    this.props.history.push('/info');
     const infoTeacher = this.state.infoTeacher
     Object.keys(infoTeacher).forEach((ele) => !infoTeacher[ele] ? delete infoTeacher[ele] : null);
     await updateTeacher(infoTeacher, this.state.currentTeacher.id);
-    this.props.history.push('/info')
+    const currentTeacher = await verifyTeacher();
+    this.setState({ currentTeacher })
+    await this.getAllTeachers();
 };
 
 updateStudent = async (e) => {
   e.preventDefault();
+  this.props.history.push('/info')
+
   const infoStudent = this.state.infoStudent
   Object.keys(infoStudent).forEach(ele => !infoStudent[ele] ? delete infoStudent[ele] : null);
   await updateStudent(this.state.infoStudent, this.state.currentStudent.id);
-  this.props.history.push('/info')
+  const currentStudent = await verifyStudent();
+  this.setState({ currentStudent })
 };
 
 
@@ -318,12 +337,16 @@ componentDidMount = async () => {
 };
 
 render(){
+  console.log('s', this.state.currentStudent)
+  let redirect = this.state.redirect && <Redirect to={"/info"}/>
     return(
       <div className='app'>
+        {redirect}
         <Header type={this.state.type}
         currentTeacher={this.state.currentTeacher}
         currentStudent={this.state.currentStudent}
         handleLogout={this.handleLogout}
+        getAllTeachers={this.getAllTeachers}
         />
         <div className='mainContainer'>
         <Switch>

@@ -20,7 +20,7 @@ const Header = (props) => {
             <div className='navList'>
                 <ol><Link to='/' className='list'>Home</Link></ol>
                 {profile}
-                <ol><Link to='/teachers' className='list'>Teachers</Link></ol>
+                <ol><Link to='/teachers' className='list' onClick={props.getAllTeachers}>Teachers</Link></ol>
                 {appointment}
                 {logout}
             </div>

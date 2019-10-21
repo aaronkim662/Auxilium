@@ -1,8 +1,8 @@
 
 const axios = require('axios');
 
-// const BASE_URL = 'http://localhost:3001';
-const BASE_URL = 'https://auxilium-react-rails.herokuapp.com/'
+const BASE_URL = 'http://localhost:3001';
+// const BASE_URL = 'https://auxilium-react-rails.herokuapp.com/'
 
 const api = axios.create({
     baseURL: BASE_URL
@@ -58,7 +58,7 @@ export const verifyTeacher = async () => {
 
 // Students
 export const deleteStudent = async (id) => {
-    const resp = await api.delete(`/student/${id}`)
+    const resp = await api.delete(`/students/${id}`)
     return resp.data
 }
 
@@ -75,7 +75,7 @@ export const registerStudent = async (registerData) => {
     localStorage.setItem('role', 'student');
     localStorage.setItem('authToken', resp.data.token);
     api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`;
-    return resp.data.teacher;
+    return resp.data.student;
 };
 
 export const updateStudent = async (updateData, id) => {
